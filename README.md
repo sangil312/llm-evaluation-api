@@ -22,6 +22,12 @@
 
 ## 테스트 방법
 ### 데이터셋 csv 파일 업로드 API
+- csv 파일 형태
+```text
+query,response
+"hi","hello"
+```
+
 - bash
 ```bash
 curl -X POST "http://localhost:8080/v1/datasets/upload" \                                    11:22:04

@@ -22,8 +22,8 @@ evaluation:
     limit: 10
     batch-size: 500
   model-api:
-    base-url: https://backend-assignment-api.datumo.com
-    path: /api/chat/completions
+    base-url: https://evaluation.free.beeceptor.com
+    path: /api/evaluation/model
     connect-timeout: 3s
     read-timeout: 30s
 

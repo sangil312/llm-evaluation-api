@@ -10,12 +10,10 @@ import org.springframework.stereotype.Repository
 import org.springframework.web.client.HttpClientErrorException
 import org.springframework.web.client.RestClient
 import org.springframework.web.client.body
-import tools.jackson.databind.ObjectMapper
 
 @Repository
 class EvaluationClient(
     restClientBuilder: RestClient.Builder,
-    private val objectMapper: ObjectMapper,
     @Value($$"${evaluation.model-api.base-url}") baseUrl: String,
     @Value($$"${evaluation.model-api.path}") private val path: String
 ) {
@@ -72,26 +70,9 @@ class EvaluationClient(
             throw CoreException(ErrorType.DEFAULT_ERROR)
         }
 
-        val content = evaluationResponse?.choices
-            ?.firstOrNull()
-            ?.message
-            ?.content
+        val response = evaluationResponse
             ?: throw CoreException(ErrorType.DEFAULT_ERROR)
 
-        return parseScore(content)
-    }
-
-    private fun parseScore(content: String): Double {
-        val scoreResponse = try {
-            objectMapper.readValue(content, EvaluationScoreResponse::class.java)
-        } catch (e: Exception) {
-            log.error("평가 API score 파싱 에러 발생 Exception: ${e.message}, $e")
-            throw CoreException(ErrorType.DEFAULT_ERROR)
-        }
-
-        val score = scoreResponse.score ?: throw CoreException(ErrorType.DEFAULT_ERROR)
-        if (score !in 0.0..1.0) throw CoreException(ErrorType.DEFAULT_ERROR)
-
-        return score
+        return response.score
     }
 }

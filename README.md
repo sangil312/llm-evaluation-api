@@ -20,6 +20,14 @@
 ## API 문서
 - `http://localhost:8080/swagger-ui`
 
+## LLM 평가 Mock 서버
+#### Response
+```json
+{
+  "score": 1.0
+}
+```
+
 ## 테스트 방법
 ### 데이터셋 csv 파일 업로드 API
 - csv 파일 형태

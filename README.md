@@ -64,8 +64,7 @@ src/main/kotlin/com/dev/assignment
 ├── api
 │   └── controller
 │       ├── config                # Async, Scheduling, RestClient, OpenAPI 설정
-│       └── v1                    # REST API 엔드포인트
-│           ├── auth              # 회원가입, 로그인
+│       └── v1                    # REST API
 │           ├── dataset           # 데이터셋 CSV 업로드
 │           ├── evaluation        # 평가 작업 생성, 결과 조회
 │           └── model             # 평가 모델 CRUD
@@ -80,9 +79,7 @@ src/main/kotlin/com/dev/assignment
 │   ├── dataset                   # Dataset JPA/JDBC 접근
 │   ├── evaluation                # EvaluationJob JPA 접근
 │   ├── model                     # Model JPA 접근
-│   └── user                      # User JPA 접근
 ├── service
-│   ├── auth                      # 사용자 가입/로그인
 │   ├── dataset                   # 데이터셋 생성, CSV 파싱, 배치 저장
 │   ├── evaluation                # 평가 작업 등록, 스케줄링, 실행, 결과 조회
 │   └── model                     # 모델 CRUD, 유효성 검증
@@ -105,7 +102,6 @@ src/main/kotlin/com/dev/assignment
 ## 도메인 엔티티
 | 엔티티                | 필드                                                                 | 설명                              |
 |--------------------|--------------------------------------------------------------------|---------------------------------|
-| `User`             | `name`, `email`, `passwordHash`                                    | 회원 정보 저장                        |
 | `Model`            | `name`, `description`, `apiUrl`                                    | 평가 요청에 사용할 모델                   |
 | `Dataset`          | `modelId`, `status`, `totalCount`                                  | 업로드된 데이터셋 단위                    |
 | `DatasetItem`      | `datasetId`, `query`, `response`, `sequenceNo`                     | CSV 한 행을 저장한 항목                 |
@@ -116,11 +112,6 @@ src/main/kotlin/com/dev/assignment
 ## 서비스 흐름
 ```text
 사용자 요청
-├── 회원가입 / 로그인
-│   └── AuthController
-│       -> AuthService
-│       -> UserRepository
-│
 ├── 모델 관리
 │   └── ModelController
 │       -> ModelService

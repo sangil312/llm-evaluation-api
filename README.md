@@ -1,4 +1,15 @@
-# LLM 답변 평가 API
+# LLM 답변 평가 토이프로젝트
+
+### 기술 스택
+- Java 25, Spring Boot (4.0.X)
+- Gradle (Kotlin DSL)
+- JPA / Hibernate
+- MySQL / H2
+- Swagger Open API & JUnit5
+- Rest Client
+
+### API 문서
+- `http://localhost:8080/swagger-ui`
 
 ### LLM 모델을 통해 생성한 질문(Query) - 답변(Response) 쌍을 별도의 LLM 모델을 이용하여 평가하는 API
 - 평가 대상이 되는 LLM 모델은 질문을 받은 뒤 질문에 대한 답변을 생성하 게 되며, 이 때 질문의 내용을 Query, 답변의 내용을 Response라고 정의합니다.
@@ -16,9 +27,6 @@
 4. 변경된 작업은 비동기로 실행되며, 데이터셋 항목을 배치 단위로 읽어 외부 평가 API를 호출
 5. 각 항목의 평가 결과는 `EvaluationResult`로 저장되고, 전체 평균 점수를 계산
 6. 작업이 정상적으로 끝나면 `FINISHED`, 오류가 발생하면 `FAILED` 상태로 종료
-
-## API 문서
-- `http://localhost:8080/swagger-ui`
 
 ## LLM 평가 Mock 서버
 #### Response

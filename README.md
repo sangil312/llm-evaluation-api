@@ -1,7 +1,8 @@
 # LLM 답변 평가 토이프로젝트
 
 ### 기술 스택
-- Java 25, Spring Boot (4.0.X)
+- Java 25, Kotlin 2.3
+- Spring Boot (4.0.X)
 - Gradle (Kotlin DSL)
 - JPA / Hibernate
 - MySQL / H2
